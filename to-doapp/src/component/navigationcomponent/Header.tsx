@@ -1,7 +1,10 @@
 import { createStyles, Grid, makeStyles, Paper, Theme } from "@material-ui/core";
-import React from "react"
+import React, { useState } from "react"
+import TaskBar from "../TaskBar/TaskBar";
+import Data from "../../data/Data.json";
+import { Task } from "../../models/Task";
 
-
+const tasks = Data
 const useStyles = makeStyles((theme: Theme)=>
 
     createStyles({
@@ -24,6 +27,8 @@ const useStyles = makeStyles((theme: Theme)=>
 export default function Sections() {
 
     const classes = useStyles();
+const[currentList, chageList] = useState<any[]>(tasks)
+
 
     return(
         <div>
@@ -35,7 +40,7 @@ export default function Sections() {
                     <Paper className={classes.paper}>Side bar</Paper>
                 </Grid>
                 <Grid item xs={12} sm={9}>
-                    <Paper className={classes.paper}>Upcomming Taskes</Paper>
+                    <Paper className={classes.paper}><TaskBar taskList={currentList} ></TaskBar></Paper>
                 </Grid>
             </Grid>
         </div>
